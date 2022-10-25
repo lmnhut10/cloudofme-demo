@@ -4,19 +4,19 @@
 ?>
 <?php
 //Get custmer information
-$query = "SELECT CustName, Address, email, telephone
+$query = "SELECT custname, Address, email, telephone
 			FROM customer
-			WHERE Username = '" . $_SESSION["us"] . "'";
-	$result = pg_query($conn, $query) or die(mysqli_error($conn));
+			WHERE username = '" . $_SESSION["us"] . "'";
+	$result = pg_query( $query) or die(mysqli_error($conn));
 	$row = pg_fetch_array($result);
 
 	$us = $_SESSION["us"];
 	$email = $row["email"];
-	$fullname = $row["CustName"];
-	$address = $row["Address"];
+	$fullname = $row["custname"];
+	$address = $row["address"];
 	$telephone = $row["telephone"];
 
-//Update information when the user presses the "Update" button
+
 if(isset($_POST['btnUpdate'])){
 	$fullname=$_POST['txtFullname'];
 	$address = $_POST['txtAddress'];
@@ -48,7 +48,7 @@ if(isset($_POST['btnUpdate'])){
 			}
 		}
 
-//Write check() function to check information
+
 function check(){
 	if($_POST['txtFullname']==""||$_POST['txtAddress']==""){
 		return "<li>Enter Fullname or Address</li>";

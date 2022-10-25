@@ -19,24 +19,24 @@
             if(isset($_GET["function"])=="del") {
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    pg_query( "DELETE FROM category WHERE cat_id='$id'");
+                    pg_query( "DELETE FROM supplier WHERE supplierid='$id'");
                 } 
             }
         ?>
             <form name="frm" method="post" action="">
-            <h1>Product Category</h1>
+            <h1>Supplier</h1>
             <p>
             <img src="images/add.png" alt="Add new" width="16" height="16" border="0" />
-            <a href="?page=add_category"> Add</a>
+            <a href="?page=add_supplier"> Add</a>
             </p>
-            <table id="tablecategory" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="tablesupplier" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th><strong>No.</strong></th>
-                    <th><strong>Category Name</strong></th>
-                     <th><strong>Desscription</strong></th>
-                    <th><strong>Edit</strong></th>
-                    <th><strong>Delete</strong></th>
+                    <th><strong>Supplier ID</strong></th>
+                    <th><strong>Supplier Name</strong></th>
+                    <th><strong>Address</strong></th>
+                    
                 </tr>
              </thead>
 
@@ -44,18 +44,18 @@
             <?php
                 include_once("connection.php");
                 $No=1;
-                $result = pg_query( "SELECT * FROM category");
+                $result = pg_query( "SELECT * FROM supplier");
                 while($row=pg_fetch_array($result))
                 {
             ?>
             <tr>
               <td class="cotCheckBox"><?php echo $No; ?></td>
-              <td><?php echo $row["cat_name"]; ?></td>
-              <td><?php echo $row["cat_des"]; ?></td>
-              <td style='text-align:center'> <a href="?page=update_category&&id=<?php echo $row["cat_id"]; ?>">
+              <td><?php echo $row["supplierid"]; ?></td>
+              <td><?php echo $row["suppliername"]; ?></td>
+              <td style='text-align:center'> <a href="?page=update_supplier&&id=<?php echo $row["supplierid"]; ?>">
               <img src='images/edit.png' border='0' /></td>
               <td style='text-align:center'>
-              <a href="?page=category_management&&function=del&&id=<?php echo $row["cat_id"]; ?>" onclick="return deleteConfirm()">
+              <a href="?page=supplier_management&&function=del&&id=<?php echo $row["supplierid"]; ?>" onclick="return deleteConfirm()">
               <img src='images/delete.png' border='0' /></a></td>
             </tr>
             <?php

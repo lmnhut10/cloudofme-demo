@@ -38,10 +38,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`Cat_ID`, `Cat_Name`, `Cat_Des`) VALUES
-('001', 'Food', 'MikTea Product '),
-('3', 'ToCo', 'MikTea Product'),
-('4', 'SoCoLa', 'MikTea Product'),
-('C002', 'Soda', 'MikTea Product');
+('1', 'Food', 'MikTea Product '),
+('2', 'ToCo', 'MikTea Product'),
+('3', 'SoCoLa', 'MikTea Product'),
+('4', 'Soda', 'MikTea Product');
 
 -- --------------------------------------------------------
 
@@ -50,18 +50,18 @@ INSERT INTO `category` (`Cat_ID`, `Cat_Name`, `Cat_Des`) VALUES
 --
 
 CREATE TABLE `customer` (
-  `Username` varchar(20) NOT NULL,
-  `Password` varchar(40) NOT NULL,
-  `CustName` varchar(30) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `custname` varchar(30) NOT NULL,
   `gender` int(11) NOT NULL,
-  `Address` varchar(1000) NOT NULL,
+  `address` varchar(1000) NOT NULL,
   `telephone` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `CusDate` int(11) NOT NULL,
-  `CusMonth` int(11) NOT NULL,
-  `CusYear` int(11) NOT NULL,
-  `SSN` varchar(10) DEFAULT NULL,
-  `ActiveCode` varchar(100) NOT NULL,
+  `cusdate` int(11) NOT NULL,
+  `cusmonth` int(11) NOT NULL,
+  `cusyear` int(11) NOT NULL,
+  `ssn` varchar(10) DEFAULT NULL,
+  `activecode` varchar(100) NOT NULL,
   `state` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,7 +69,8 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`Username`, `Password`, `CustName`, `gender`, `Address`, `telephone`, `email`, `CusDate`, `CusMonth`, `CusYear`, `SSN`, `ActiveCode`, `state`) VALUES
+INSERT INTO `customer` (`username`, `password`, `custname`, `gender`, `address`, `telephone`, `email`, `cusdate`, 
+`cusmonth`, `cusyear`, `ssn`, `activecode`, `state`) VALUES
 ('nhut', '25d55ad283aa400af464c76d713c07ad', 'La Minh Nhut', 1, 'Can Tho', '0396707375', 'laminhnhut158@gmail.com', 3, 5, 2002, '', '', 1);
 
 -- --------------------------------------------------------

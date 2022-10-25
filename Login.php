@@ -24,11 +24,11 @@ if (isset($_POST['btnLogin'])) {
 	}
 	else{
 		include_once("connection.php");
-		$us = htmlspecialchars(($conn));
-		$pa = htmlspecialchars(($conn));
+		// $us = htmlspecialchars(($conn));
+		// $pa = htmlspecialchars(($conn));
 		$pass = md5($pa);
-		$res = pg_query($conn, "SELECT Username, Password, state FROM Customer WHERE Username='$us' AND Password='$pass'")
-		// or die(pg_errno($conn));
+		$res = pg_query( "SELECT Username, Password, state FROM Customer WHERE Username='$us' AND Password='$pass'")
+		or die(pg_errno($conn));
 		$row = pg_fetch_array($res);
 		if(pg_num_rows($res)==1){				
 			$_SESSION["us"] = $us;

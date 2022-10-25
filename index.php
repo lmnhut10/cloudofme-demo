@@ -45,9 +45,10 @@
     session_start();
     include_once("connection.php"); 
   ?>
+  
 
-   <header id="header"><!--header-->
-		<div class="header_top"><!--header_top-->
+   <header id="header">
+		<div class="header_top">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6">
@@ -55,6 +56,8 @@
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> 0396707375</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> childrenstore1311@gmail.com</a></li>
+                                
+                                
 							</ul>
 						</div>
 					</div>
@@ -65,6 +68,7 @@
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 
 							</ul>
 						</div>
@@ -73,7 +77,7 @@
 			</div>
 		</div>
 		
-		<div class="header-middle" style="background-color:while"><!--header-middle-color-design-->
+		<div class="header-middle" style="background-color:while">
 			<div class="container" >
 				<div>
 					<div class="col-sm-6" >
@@ -113,9 +117,9 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-middle-->
+		</div>
 	
-		<div class="header-bottom" style="background-color:#000099"> <!--header-bottom-->
+		<div class="header-bottom" style="background-color:#000099"> 
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-9">
@@ -130,14 +134,14 @@
                         <div class="mainmenu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								
-								<li class="dropdown"><a href="#">Intro<i class="fa fa-angle-down"></i></a>
+								<!-- <li class="dropdown"><a href="#">Intro<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                        
 										<li><a href="">Branch system</a></li> 
 
 										<li><a href="">Payments</a></li> 
                                     </ul>
-                                </li> 
+                                </li>  -->
 						<div class="mainmenu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.php" class="active">Home</a></li>
@@ -145,11 +149,15 @@
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="?page=category_management">Category</a></li>
                                         <li><a href="?page=product_management">Product</a></li>
+                                        <li><a href="?page=supplier_management">Supplier</a></li>
+                                        <li><a href="?page=orderdetail_management">OrderDetail</a></li>
+                                        <li><a href="?page=shop_management">Shop</a></li>
+                                        <li><a href="?page=order_management">Order</a></li>
                                     </ul>
                                 </li> 
                                 
-                                <li><a href="#">Feedback</a></li>
-								<li><a href="#">Contact</a></li>
+                                <!-- <li><a href="#">Feedback</a></li>
+								<li><a href="#">Contact</a></li> -->
                                 
 							</ul>
 						</div>
@@ -161,8 +169,8 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-bottom-->
-	</header><!--/header-->
+		</div>
+	</header>
   
     <?php
     if(isset($_GET['page']))
@@ -176,6 +184,18 @@
         }
         else if($page=="category_management"){
             include_once("Category_Management.php");
+        }
+        else if($page=="orderdetail_management"){
+            include_once("OrderDetail_Management.php");
+        }
+        else if($page=="supplier_management"){
+            include_once("Supplier_Management.php");
+        }
+        else if($page=="shop_management"){
+            include_once("Shop_Management.php");
+        }
+        else if($page=="order_management"){
+            include_once("Order_Management.php");
         }
         else if($page=="product_management"){
             include_once("Product_Management.php");
@@ -194,6 +214,18 @@
         }
         else if($page=="add_product"){
             include_once("Add_Product.php");
+        }
+        else if($page=="add_supplier"){
+            include_once("Add_Supplier.php");
+        }
+        else if($page=="add_order"){
+            include_once("Add_Order.php");
+        }
+        else if($page=="add_shop"){
+            include_once("Add_Shop.php");
+        }
+        else if($page=="add_orderdetail"){
+            include_once("Add_OrderDetail.php");
         }
         else if($page=="update_product"){
             include_once("Update_Product.php");
@@ -216,6 +248,7 @@
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
                             
                         
                     </div>
@@ -229,7 +262,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy;children_store</p>
+                        <p>&copy;2022 children_store</p>
                     </div>
                 </div>
                 <div class="col-md-4">

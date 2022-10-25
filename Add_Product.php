@@ -7,13 +7,13 @@
 	<script type="text/javascript" src="scripts/ckeditor/ckeditor.js"></script>
 <?php
     include_once("connection.php");
-    function bind_Category_List($conn) {
-	    $sqlstring = "select Cat_ID, Cat_Name from category";
-	    $result = pg_query($conn, $sqlstring);
+    function bind_Category_List() {
+	    $sqlstring = "select cat_id, cat_name from category";
+	    $result = pg_query( $sqlstring);
 	    echo "<select name= 'CategoryList' class='form-control'>
 			    <option value='0'>Choose category</option>";
 			    while ($row = pg_fetch_array($result)) {
-				    echo "<option value='".$row['Cat_ID']."'>".$row['Cat_Name']."</option>";
+				    echo "<option value='".$row['cat_id']."'>".$row['cat_name']."</option>";
 			    }
 	    echo "</select>";
 	}		
@@ -37,7 +37,8 @@
                 <div class="form-group">   
                     <label for="" class="col-sm-2 control-label">Product category(*):  </label>
 							<div class="col-sm-10">
-							      <?php bind_Category_List($conn); ?>
+							      <?php bind_Category_List();
+								   ?>
 							</div>
                 </div>  
                           
@@ -94,8 +95,8 @@ if(isset($_POST["btnAdd"]))
 	$short= $_POST['txtShort'];
 	$price= $_POST['txtPrice'];
 	$qty= $_POST['txtQty'];
-	$shop= $_POST["txtName"];
-	$pic= $_POST['txtShop'];
+	$shopid= $_POST["txtShop"];
+	$pic= $_FILES['txtImage'];
 	$category= $_POST['CategoryList'];
 	$err="";
 	if(trim($id)==""){
@@ -114,7 +115,7 @@ if(isset($_POST["btnAdd"]))
 		$err.="<li>Product quantity must be number</li>";	
 	}
 
-	if(trim($shop)==""){
+	if(trim($shopid)==""){
 		$err.="<li>Enter shop, please</li>";	
 		}
 	
@@ -122,20 +123,29 @@ if(isset($_POST["btnAdd"]))
 		echo "<ul>$err</ul>";
 	}
 	else{
-		if($pic['type']=="image/jpg" || $pic['type']=="image/jpeg" || $pic['type']=="image/png" ||$pic['type']=="image/gif"){
+		if($pic['type']=="image/jpg" || $pic['type']=="image/jpeg" || $pic['type']=="image/png" || $pic['type']=="image/gif")
+		{
 			if($pic['size']<=614400)
 			{
-				$sq="Select * from product where Product_ID='$id' or Product_Name='$proname'";
-				$result=pg_query($conn,$sq);
+				$sq="Select * from product where product_id='$id' or product_name='$proname'";
+				$result=pg_query($sq);
 				if(pg_num_rows($result)==0)
 				{
 					copy($pic['tmp_name'],"product-imgs/".$pic['name']);
 					$filePic = $pic['name'];
 
 					$sqlstring="INSERT INTO product (
-					Product_ID, Product_Name, Price, SmallDesc, Pro_qty, Pro_image, Cat_ID, ProDate)
-					VALUES ('$id','$proname',$price,'$short', $qty,'$filePic','$category','".date('Y-m-d H:i:s')."')";
-					pg_query($conn,$sqlstring);
+					product_id, 
+					product_name, 
+					price, 
+					smalldesc, 
+					pro_qty,
+					pro_image, 
+					cat_id, 
+					prodate, 
+					shopid)
+					VALUES ('$id','$proname',$price,'$short', $qty,'$filePic','$category','".date('Y-m-d H:i:s')."', '$shopid')";
+					pg_query($sqlstring);
 					echo '<meta http-equiv="refresh" content="0;URL=?page=product_management"/>';
 				}
 				else{
@@ -146,7 +156,8 @@ if(isset($_POST["btnAdd"]))
 				echo"Size of image too big";
 			}				
 		}
-		else{
+		else
+		{
 			echo "Image format is not correct";
 		}
 	}

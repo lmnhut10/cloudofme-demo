@@ -21,14 +21,14 @@
 					echo "<ul>$err</ul>";
 				}
 				else{
-					$id = htmlspecialchars(pg_real_escape_string($conn, $id));
-					$name = htmlspecialchars(pg_real_escape_string($conn, $name));
-					$des = htmlspecialchars(pg_real_escape_string($conn, $des));
-					$sq="Select * from category where Cat_ID='$id' or Cat_Name='$name'";
-					$result = pg_query($conn,$sq);
+					// $id = htmlspecialchars(pg_real_escape_string($id) );
+					// $name = htmlspecialchars(pg_real_escape_string($name));
+					// $des = htmlspecialchars( pg_real_escape_string($des));
+					$sq="Select * from category where cat_id='$id' or cat_name='$name'";
+					$result = pg_query($sq);
 					if(pg_num_rows($result)==0)
 					{
-						pg_query($conn, "INSERT INTO category (Cat_ID, Cat_Name, Cat_Des) VALUES ('$id','$name','$des')");
+						pg_query( "INSERT INTO category (cat_id, cat_name, cat_des) VALUES ('$id','$name','$des')");
 						echo '<meta http-equiv="refresh" content="0;URL=?page=category_management"/>';
 					}
 					else

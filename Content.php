@@ -1,4 +1,3 @@
-
 <?php
 include_once("connection.php");
 ?>
@@ -20,7 +19,6 @@ include_once("connection.php");
 			</div>
 			
     </div> 
-    
 
     <div class="maincontent-area">
         <div class="zigzag-bottom"></div>
@@ -34,10 +32,10 @@ include_once("connection.php");
                        
                            <?php
 						  
-		  				   	$result = pg_query($conn, "SELECT * FROM product" );
+		  				   	$result = pg_query( "SELECT * FROM product" );
 			
-			                if (!$result) { //add this check.
-                                die('Invalid query: ' . pg_error($conn));
+			                if (!$result) { 
+                                die('Invalid query: ' . pg_error());
                             }
 		
 			            
@@ -46,17 +44,18 @@ include_once("connection.php");
 				            <!--A product -->
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="product-imgs/<?php echo $row['Pro_image']?>" width="200" height="200">
+                                    <img src="product-imgs/<?php echo $row['pro_image']?>" width="200" height="200">
                                     <div class="product-hover">
-                                        <a href="?page=quanly_product details&ma=<?php echo  $row['Product_ID']
+                                        <a href="?page=quanly_product details&ma=<?php echo  $row['product_id']
                                         ?>" class="view-details-link"><i class="fa fa-link"></i> See</a>
                                     </div>
                                 </div>
                                 
-                                <h2><a href="?page=quanly_product details&ma=<?php echo  $row['Product_ID']?>"> <?php echo  $row['Product_Name']?></a></h2>
+                                <h2><a href="?page=quanly_product details&ma=<?php echo  $row['product_id']?>">
+                                 <?php echo  $row['product_name']?></a></h2>
                                 
                                 <div class="product-carousel-price">
-                                    <ins><?php echo  $row['Price']?></ins> 
+                                    <ins><?php echo  $row['price']?></ins> 
                                 </div> 
                             </div>
                 
