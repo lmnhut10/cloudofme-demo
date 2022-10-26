@@ -51,8 +51,8 @@
             ?>
             <tr>
               <td class="cotCheckBox"><?php echo $No; ?></td>
-              <td><?php echo $row["shopid"]; ?></td>
               <td><?php echo $row["shopname"]; ?></td>
+              <td><?php echo $row["address"]; ?></td>
               
               <td style='text-align:center'> <a href="?page=update_shop&&id=<?php echo $row["shopid"]; ?>">
               <img src='images/edit.png' border='0' /></td>
